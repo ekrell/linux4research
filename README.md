@@ -55,9 +55,22 @@ Hosting simple html sites
 
 #### Manage processes
 
-Monitor processes
+**Concepts**
 
-    w
+- Program: sequence of instructions (passive)
+- Process: program in execution (active); Or, an instance of a program
+- Programs -> processes is a 1:M (one-to-many) relationship
+- Processes are maintained within the Kernel's process table
+- Thread: processes are composed of at least one thread of execution -- First thread in process is called task group leader -- Other threads in process are linked through a list of nodes
+- Task: an executable entity; a general term for process or thread
+
+**Process monitoring**
+
+- [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system
+- [`pgrep`](): 
+- [`top`]():
+- [`htop`](): 
+
 
     ps -aux
     
@@ -115,26 +128,167 @@ I prefer `tmux`, but `screen` is often already installed on Linux systems.
 
 ### Install software without root
 
-Compile your own code
+- Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
+- Software is typically installed on request
+- But can be slow
+- Or, you might have a number of small executables that don't make sense to be made available for all users
+- Why do you need root to install programs? Because users should not modify system-wide files
+- But do they **need** to be system-wide? Depends... 
 
-Install `tmux` 
+#### One way to install: write it yourself
 
-Create a scripts directory, add to path
+- Every time you write a C program and compile it, or even a python/R/shell script, etc....
+- You just added an executable program to the computer, installing it for yourself in a directory you own
+- This doesn't "feel" like installing, but how is it not?
+- Maybe we would feel like it installed if we can access it from anywhere,like the other system commands
+
+        # Make a new executable program
+        nano program.sh
+                echo "This is a script, a type of non-compiled program"
+        
+        # Set executable permission
+        chmod +x program.sh
+        
+        # Run it
+        ./program.sh
+        
+        # Go to prevous directory and try to run it
+        cd ..
+        ./program.sh
+        linux4research/program.sh
+        
+        # Create local executables directory
+        cd ~
+        mkdir bin
+        
+        # Move your script
+        cp linux4research/program.sh bin/program
+        
+        # Modify your `$PATH` variable so that your environment will check that directory for programs
+        nano ~/.bashrc 
+            export PATH=$PATH:bin  # Add this line to the end
+        bash  # Update environment
+        
+        # Now run it from anywhere
+        program
+        
+#### Install programs from the web to your local programs directory
+
+**Install `tree`**
 
 
-Share your scripts with others
+**Install `tmux`**
+
+
+
+
+
+### Collaboration within Linux
 
 
 ### Managing SSH keys
 
 ### Package management
 
+Software is typically installed and maintained with a package manager. Software is bundled into a package that includes the executable file, manual pages, config files, and whatever else is needed. Since the major distributions have their own package manager (or package system), you have some degree of comfort that the packages will mesh well with the system. In other words, if you are installing software in Ubuntu with `apt-get`, the packages should conform to typical Ubuntu conventions. Typical Linux software exist both as source code available for manual installation and as pre-built binaries in packages in package repositories. 
+
+Two major package systems: 
+
+| Package system | Major distributions | 
+|----------------------|--------------------------| 
+| Debian style (.deb) | Debian, Ubuntu, Raspbian | | Red Hat style (.rpm) | Red Hat, Fedora, CentOS |
+
+
+**Package System Overview**
+
+- Package files:
+    - compressed collection of files that make up the software
+    - Scripts for how to install it
+    - Metadata: description, etc
+    - Package maintainers do the job of turning source code into packages
+- Repositories
+    - Where packages are stored
+    - The major distros maintain repos of thousands of packages
+    - Centralized repos often have software versions far behind the latest; partially for security & reliability
+    - Distros often have multiple repos:
+        - Stable: the main repo where packages have been well-tested and seem reliable
+        - Testing: for those who want to look for bugs before release
+        - Non-free: proprietary software, especially device drivers
+    - But various repos exist. The original software developers may have their own repo for faster releases
+- Dependencies
+    - Package systems require some means of dependency resolution
+    - Linux software makes heavy use of shared, dynamically-linked libraries
+    - Package managers can install all needed dependencies
+
+| Package system | Low-level tools | High-level tools |
+| Debian style | dpkg | apt, apt-get, aptitude |
+| Red Hat style rpm 	yum, dnf
+
+Quick note about updates: Debian has `apt-get update` and Red Hat has `dnf check-update`. Neither installs anything. In the case of Debian, it updates the package index file, which apt uses for finding packages, which new versions are available, etc. You need to do this before `apt-get upgrade` so that apt is actually looking at the latest state of the packages. Some idea with Red Hat.
+
+Package management tasks
+
+- Find a package in a repo
+    - Debian: `apt-cache search <searchstring>`
+    - Red hat: `dnf search <searchstring>`
+- Install a package from a repo
+    - The typical way to install packages
+    - Debian: `apt-get install <package_name>`
+    - Red hat: `dnf install <package_name>`
+- Install a package from package file
+    - There will be not dependency resolution! Will just tell you there is an issue and halt.
+    - Useful if you want to research a vulnerable package long since removed from the repo
+    - Debian: `dpkg -i <package_file.dpkg>`
+    - Red hat: `rpm -i <package_file.rpm>`
+- Remove packages
+    - Very handy since Linux installs pieces of packages across FHS, not a single "programs" directory
+    - Debian: `apt-get remove <package_name>`
+    - Red hat: `dnf remove <package_name>`
+- Update packages
+    - As noted before, be sure to use apt-get update or dnf check-update.
+    - Debian: `apt-get upgrade`
+    - Red hat: `dnf upgrade`
+- List installed packages
+    - Debian: `dpkg -l`
+    - Red hat: `rpm -qa`
+- Check if a particular package is installed
+    - Debian: `dpkg -s <package_name>`
+    - Red hat: `rpm -q <package_name>`
+- Get information about a package
+    - Debian: `apt-cache show <package_name>`
+    - Red hat: `dnf info <package_name>`
+- List dependencies
+    - Useful to make sure you don't install a package you know you don't want
+    - Debian: `apt-cache depends <package_name>`
+    - Red hat: `dnf repoquery --requires --resolve <package_name>`
+- Determine which package installed a particular file
+    - Debian: `dpkg -S <file_name>`
+    - Red hat: `rpm -qf <file_name>`
+- Determine which package provides file
+    - Debian: `dpkg-query --search '/etc/passwd'` <-- Full path for both Debian and Red Hat
+    - Red hat: `dnf provides */iscsiadm` <-- But supports substition to indicate that we don't care about the full path
+- View enabled repositories
+    - Debian: `apt-cache policy`
+    - Red hat: `dnf repolist`
+- Add new repository
+    - Debian: `sudo add-apt-repository ppa:libreoffice/ppa`
+    - Red hat: `dnf config-manager --add-repo="https://mirror.aarnet.edu.au/pub/centos/7"`
+- Remove repository
+    - Debian: `sudo add-apt-repository -r ppa:<repo to remove>`
+        - Look into `ppa-purge` for how to also downgrade/remove all packages installed with that repo
+    - Red hat: `rpm -e rpmfusion-free-release-28-1`
+    - You might want to just disable a repo. Look into the best practices for disable vs remove.
+- View the installation history
+    - Debian: `tail -n 25 /var/log/apt/history.log` <- for checking the last 25 entries. Could use less, nano, etc.
+    - Red hat: `dnf history`
+
 ### Virtual environments & containers
+
+
 
 ### Setting up a remote Jupyterlab server
 
-
-### Collaboration within Linux
+### Managing config files
 
 
 
