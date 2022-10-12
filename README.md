@@ -16,9 +16,59 @@ See also: [Evan Krell's tutorial for using High Performance Computing resources 
 - youtube: https://www.youtube.com/channel/UCvsK07PvushTI2BA2BhN-DQ
 - google calendar: https://calendar.google.com/calendar/u/0?cid=Y2JlNDZodnIwZXV0NmZzN2h1bWs2NnB2dnNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
 
-## Part 1: Common researcher tasks
 
-### Transfering files
+## Clients & Servers
+
+A very common source of confusion for Linux beginners is the client-server relationship. 
+
+- Server: a computer that you connect to remotely. May host data and services for a large number of users (but not always). 
+- Client: the machine you are working from that uses the server's resources
+- Very common for researchers to run their code on a remote server that has more powerful resources than their personal machine
+- Secure Shell (SSH): a network protocol for logging into a remote computer from a local computer
+    - [`ssh`](https://www.ssh.com/academy/ssh/command): a software implementation of the SSH protocol. Also called an SSH client. Use it to log into remote computers. Similar to PuTTY on Windows.
+    - [`scp`](https://www.ssh.com/academy/ssh/scp): Copy a file from one machine to another
+
+Consider the following: 
+
+
+    ekrell@krell:~$ ls
+    anaconda3    cuda-testing    Downloads    Music    opencv    Programs    R    Videos
+    Desktop    Public Tools    Documents    examples.desktop    Pictures    Templates    Zotero
+    ekrell@krell:~$ ssh ekrell@riddler.tamucc.edu
+    You are accessing a Texas A&M University - Corpus Christi ("TAMU-CC") information system.
+
+    • Unauthorized use is prohibited;
+    • Usage may be subject to security testing and monitoring;
+    • Misuse is subject to criminal prosecution; and
+    • Users have no expectation of privacy except as otherwise provided by applicable privacy laws; and
+    • By logging in, you are agreeing to the rules and conditions set forth by Texas A&M University-Corpus Christi here: IT Acceptable Use Policy
+
+    ekrell@riddler.tamucc.edu's password: 
+    Last login: Tue Oct 11 20:35:31 2022 from 99-111-138-226.lightspeed.crchtx.sbcglobal.net
+    [ekrell@riddler ~]$ ls
+    cosc2465  ekrellLab3  hw4  kraytracer.zip  LINKEDLISTS.cpp  newdir  playground  temp  TSA-V_severity.tsv
+    2437labs  changed.txt  cosc3336_DatabaseFinalScript.sql  ekrell.sql  IMGPROC  KRELL_IMGPROC.tar.gz  LINKEDLISTS.h
+    [ekrell@riddler ~]$ exit
+    logout
+
+    Connection to riddler.tamucc.edu closed.
+    ekrell@krell:~$ 
+
+There is actually a lot going on. A simplied explanation: 
+
+1. I was at my desktop computer in a terminal emulator (command line program in a GUI window manager)
+2. There exists a computer with the IP address `23.221.222.250`
+3. Instead of having to memorize that number, the Domain Name Service (DNS) is used to map human-friendly names to IP addresses
+4. The TAMUCC IT have a tradition of name the CS student's homework server after Batman villains. Currently, it is `riddler.tamucc.edu`. We can call it Riddler. 
+5. Following the SSH protocol, Riddler is running a program (`sshd`) that accepts incoming remote logins
+6. Following the SSH protocol, I used the `ssh` program to connect to Riddler using its domain name
+7. I am asked for my password, which is the password for my account on Riddler
+8. Since the SSH protocol is based on cryptography, anyone monitoring my network traffic will see an encrypted version of the traffic, including the password
+9. Having logged in, the commands I enter are being performed on Riddler even though I am sitting at my home desktop
+
+
+
+## Transfering files
 
 Clone this repo
 
