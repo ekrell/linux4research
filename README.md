@@ -17,6 +17,8 @@ See also: [Evan Krell's tutorial for using High Performance Computing resources 
 - google calendar: https://calendar.google.com/calendar/u/0?cid=Y2JlNDZodnIwZXV0NmZzN2h1bWs2NnB2dnNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
 
 
+# Part 1: Without admin priviledges
+
 ## Clients & Servers
 
 A very common source of confusion for Linux beginners is the client-server relationship. 
@@ -67,26 +69,96 @@ There is actually a lot going on. A simplied explanation:
 9. Having logged in, the commands I enter are being performed on Riddler even though I am sitting at my home desktop
 
 
-
 ## Transfering files
 
-Clone this repo
+### Transfer files from client to server
 
-    git clone git@github.com:ekrell/linux4research.git
-    cd linux4research
+    # Make a temp directory to store these
+    mkdir playground; cd playground
 
+    # Create files
+    touch apple.txt
+    touch pear.txt
+    touch melon.csv
+    touch cookie1.txt cookie2.txt cookie.txt
+    mkdir -p dir1/dir2
+    touch dir1/dir2/cat.dat dir1/dir2/dog.dat
 
-Mirror websites
-
-Hosting simple html sites
-
-  (Auto-make directory into site)
-  
-
-
-
-
+    # Transfer a single file
+    scp apple.txt ekrell@riddler.tamucc.edu:
     
+    # Transfer multiple files
+    scp apple.txt pear.txt ekrell@riddler.tamucc.edu:
+    
+    # Using wildcard expansion
+    scp cookie*.txt ekrell@riddler.tamucc.edu:
+    
+    # Transfer a directory
+    scp -r dir1 ekrell@riddler.tamucc.edu:
+    
+
+### Download from a web source
+
+Instead of downloading to your local machine for transfering to the remote server, 
+can simply download directly from a web page in a remote session
+
+We will download a file from https://www.bionumerics.com/download/sample-data 
+
+    # SSH into remote machine
+    ssh ekrell@riddler.tamucc.edu
+
+    # Make a temp directory to store these
+    mkdir playground; cd playground
+
+    # Download a single file
+    wget https://www.bionumerics.com/sites/default/files/download/AB%20sequencer%20trace%20files.zip
+    ls
+    unzip AB\ sequencer\ trace\ files.zip
+    head AFLP_sample_A01_001_2004-11-22.fsa
+
+Can download multiple files on a webpage. This is done by recursively downloading the pages on a site
+
+- `-r`: tells wget to recursively download pages
+- `l <number>`: tells wget how many levels to recursively go down
+
+There are a large number of files on that page. Perhaps we only want the "WGS" files. 
+
+- `-A <match string>`: Download only matching files, with the wildcard extension allowed
+<br>
+
+    # Download multiple files on the page
+    wget -r -l 1 -A 'WGS*' https://www.bionumerics.com/download/sample-data
+    ls www.bionumerics.com/sites/default/files/download/database/
+
+
+By increasingly the recursion limit, can download all pages, and pages in those pages, etc. 
+We can download the entire FogNet `datashare` server, and skip directories we don't want
+
+- `--reject-regex="<regular expression>"`: Skip directories/files that match the regular expression
+<br>
+
+    # Recursively download a site
+    wget -r --reject-regex=".*datasets.*" https://gridftp.tamucc.edu/fognet/datashare/
+    ls gridftp.tamucc.edu/fognet/datashare       # Notice that you get all but 'datasets' directory
+
+
+### Transfer files from server to client
+
+    # Transfer a single file
+    
+    
+    # Transfer multiple files
+    
+    
+    # Using wildcard expansion
+    
+    
+    # Transfer a directory
+    
+    
+    
+
+## File compression 
     
 
    
@@ -230,13 +302,12 @@ I prefer `tmux`, but `screen` is often already installed on Linux systems.
 **Install `tmux`**
 
 
+### Managing SSH keys
 
 
+# Part 2: Admin priviledges required
 
 ### Collaboration within Linux
-
-
-### Managing SSH keys
 
 ### Package management
 
@@ -332,13 +403,7 @@ Package management tasks
     - Debian: `tail -n 25 /var/log/apt/history.log` <- for checking the last 25 entries. Could use less, nano, etc.
     - Red hat: `dnf history`
 
-### Virtual environments & containers
-
-
-
 ### Setting up a remote Jupyterlab server
-
-### Managing config files
 
 
 
