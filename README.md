@@ -111,6 +111,10 @@ We will download a file from https://www.bionumerics.com/download/sample-data
     mkdir playground; cd playground
 
     # Download a single file
+    wget https://raw.githubusercontent.com/ekrell/hpc-dna-tutorial/master/sample_data/GENBANK_large.fasta
+    wget https://raw.githubusercontent.com/ekrell/hpc-dna-tutorial/master/sample_data/BOLD_sample.fasta
+
+    # Download a zip file
     wget https://www.bionumerics.com/sites/default/files/download/AB%20sequencer%20trace%20files.zip
     ls
     unzip AB\ sequencer\ trace\ files.zip
@@ -142,25 +146,69 @@ We can download the entire FogNet `datashare` server, and skip directories we do
     ls gridftp.tamucc.edu/fognet/datashare       # Notice that you get all but 'datasets' directory
 
 
-### Transfer files from server to client
+    # Exit remote server
+    exit
+
+
+### Transfer files from server to client    
 
     # Transfer a single file
+    scp ekrell@riddler.tamucc.edu:playground/www.bionumerics.com/sites/default/files/download/database/WGS_Bcc.bnbk    .
     
-    
-    # Transfer multiple files
-    
-    
-    # Using wildcard expansion
-    
+    # Transfer multiple files using wildcard expansion
+    scp ekrell@riddler.tamucc.edu:playground/www.bionumerics.com/sites/default/files/download/database/WGS_*.bnbk    .
     
     # Transfer a directory
-    
-    
+    mkdir WGS
+    scp -r ekrell@riddler.tamucc.edu:playground WGS
     
 
 ## File compression 
     
+A very common source of slowdown is working with large uncompressed files. 
+Compressing lets you transfer data faster and take up less storage on the machine. 
 
+### Compress a single file
+
+    # Inspect raw file
+    file GENBANK_large.fasta
+    du GENBANK_large.fasta
+    du -h GENBANK_large.fasta
+
+    # Compress with gzip
+    gzip GENBANK_large.fasta
+    ls
+    file GENBANK_large.fasta.gz
+    du -h GENBANK_large.fasta.gz
+    
+    # Uncompress with gunzip
+    gunzip GENBANK_large.fasta.gz
+    ls
+    
+
+### Compress a directory
+
+    # Place files in a directory
+    mkdir sequences
+    mv *.fasta sequences
+    ls sequences
+    du -h sequences
+    
+    # Convert directory to archive & gzip
+    tar -cvzf sequences.tar.gz sequences
+    du -h sequences.tar.gz
+    
+    # Uncompress and extract -> back to raw directory
+    tar -xvzf sequences.tar.gz
+   
+# Or use `zip` (good for sharing with Windows users)
+
+    # Zip
+    zip -r seqs.zip sequences
+    du -h seqs.zip
+    
+    # Unzip
+    unzip seqs.zip      # Safer than tar? 
    
 
 ### Managing remote sessions
