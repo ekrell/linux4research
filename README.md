@@ -13,8 +13,8 @@
 ## Recommended (free) resources
 
 - [The Linux Command Line](http://linuxcommand.org/tlcl.php). In-depth Linux book: command line and scripting
-- [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common research tasks is to speed up long processes by dividing into indepedent units that run simultaneously.
-- [Evan Krell's tutorial for using High Performance Computing resources for processing DNA data for bioinformatics, etc.](https://github.com/ekrell/hpc-dna-tutorial) It is from 2016, but I expect will still be applicable for the most part. 
+- [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common to speed up long processes by dividing into indepedent units that run simultaneously.
+- [Evan Krell's tutorial DNA data processing using High Performance Computing](https://github.com/ekrell/hpc-dna-tutorial). For bio students to get started with [TAMUCC's HPC](https://hpcweb.tamucc.edu/). 
 
 ## The innovation in COmputing REsearch (iCORE) lab
 
@@ -25,6 +25,9 @@
 
 
 # Part 1: Without admin priviledges
+
+- Those working on remote servers like the HPC are very unliekly to have administrator priviledges: _root_ in Linux parlance.
+- So these are things that a typically system would allow a non-elevated user to perform. No need for the `sudo` command.
 
 ## Clients & Servers
 
