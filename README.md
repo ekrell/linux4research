@@ -57,7 +57,7 @@ For example, the following means to create a file called `puppy.txt` and write `
 
 A very common source of confusion for Linux beginners is the client-server relationship. 
 
-![Client-server-model.png](img/client-server-model.png)
+![Client-server-model.png](img/client-server-model.png) [1]
 
 - **Server:** a computer that you connect to remotely. May host data and services for a large number of users. 
 - **Client:** the machine you are working from that uses the server's resources
@@ -104,6 +104,8 @@ There is actually a lot going on. A simplied explanation:
 9. Having logged in, the commands I enter are being performed on Riddler even though I am sitting at my home desktop
 
 ## Transfering files
+
+![SSH transfer](img/SSH-session.png) [2]
 
 - Task: transfer files between computers
 - Task: download data from the web using the command line
@@ -632,3 +634,9 @@ Package management tasks
 - View the installation history
     - Debian: `tail -n 25 /var/log/apt/history.log` <- for checking the last 25 entries. Could use less, nano, etc.
     - Red hat: `dnf history`
+
+## Image sources
+
+- [1] https://en.wikipedia.org/wiki/Client%E2%80%93server_model
+- [2] https://www.softwaretestinghelp.com/what-is-sftp/ 
+
