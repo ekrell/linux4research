@@ -615,9 +615,12 @@ Two major package systems:
     - Linux software makes heavy use of shared, dynamically-linked libraries
     - Package managers can install all needed dependencies
 
+
 | Package system | Low-level tools | High-level tools |
+|----------|------------|--------------------------| 
 | Debian style | dpkg | apt, apt-get, aptitude |
-| Red Hat style rpm 	yum, dnf
+| Red Hat style | rpm |	yum, dnf |
+
 
 Quick note about updates: Debian has `apt-get update` and Red Hat has `dnf check-update`. Neither installs anything. In the case of Debian, it updates the package index file, which apt uses for finding packages, which new versions are available, etc. You need to do this before `apt-get upgrade` so that apt is actually looking at the latest state of the packages. Some idea with Red Hat.
 
