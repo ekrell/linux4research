@@ -16,6 +16,30 @@
 - [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common to speed up long processes by dividing into indepedent units that run simultaneously.
 - [Evan Krell's tutorial DNA data processing using High Performance Computing](https://github.com/ekrell/hpc-dna-tutorial). For bio students to get started with [TAMUCC's HPC](https://hpcweb.tamucc.edu/). 
 
+## Formatting notes
+
+Commands to type in a terminal are formated as a code block:
+
+    ls
+    
+Any lines in the code block that start with a `#` are comments. No need to run these. 
+
+    # Use ls to list files in the current directory
+    ls
+
+Some commands have place-holders that need to be changes. Placeholders are indicated with `< >`. In the following, you would replace `<USERNAME>` with your actual username. 
+
+    ssh <USERNAME>@riddler.tamucc.edu
+    
+In the examples, I'll use `riddler.tamucc.edu` as the remote server. If you have an account on there, feel free to follow along. 
+
+I will use two tabs to indicate text that is being written to a file, rather than commmands. 
+For example, the following means to create a file called `puppy.txt` and write `beagle` inside the file. 
+
+    nano puppy.txt
+            beagle
+
+
 ## The innovation in COmputing REsearch (iCORE) lab
 
 - website: http://icore.tamucc.edu/
@@ -33,15 +57,16 @@
 
 A very common source of confusion for Linux beginners is the client-server relationship. 
 
-- Server: a computer that you connect to remotely. May host data and services for a large number of users (but not always). 
-- Client: the machine you are working from that uses the server's resources
-- Very common for researchers to run their code on a remote server that has more powerful resources than their personal machine
-- Secure Shell (SSH): a network protocol for logging into a remote computer from a local computer
+![Client-server-model.png](img/client-server-model.png)
+
+- **Server:** a computer that you connect to remotely. May host data and services for a large number of users. 
+- **Client:** the machine you are working from that uses the server's resources
+- Very common for researchers to run their code on a more powerful remote server
+- [Secure Shell (SSH)](https://www.ssh.com/academy/ssh/protocol): a network protocol for logging into a remote computer from a local computer
     - [`ssh`](https://www.ssh.com/academy/ssh/command): a software implementation of the SSH protocol. Also called an SSH client. Use it to log into remote computers. Similar to PuTTY on Windows.
     - [`scp`](https://www.ssh.com/academy/ssh/scp): Copy a file from one machine to another
 
 Consider the following: 
-
 
     ekrell@krell:~$ ls
     anaconda3    cuda-testing    Downloads    Music    opencv    Programs    R    Videos
@@ -70,14 +95,13 @@ There is actually a lot going on. A simplied explanation:
 
 1. I was at my desktop computer in a terminal emulator (command line program in a GUI window manager)
 2. There exists a computer with the IP address `23.221.222.250`
-3. Instead of having to memorize that number, the Domain Name Service (DNS) is used to map human-friendly names to IP addresses
-4. The TAMUCC IT have a tradition of name the CS student's homework server after Batman villains. Currently, it is `riddler.tamucc.edu`. We can call it Riddler. 
+3. Instead of having to memorize that number, the [Domain Name Service (DNS)](https://aws.amazon.com/route53/what-is-dns/) is used to map human-friendly names to IP addresses
+4. The TAMUCC IT have a tradition of name the CS student's homework server after Batman villains. Currently, it is `riddler.tamucc.edu`. We can call it simply _Riddler_. 
 5. Following the SSH protocol, Riddler is running a program (`sshd`) that accepts incoming remote logins
 6. Following the SSH protocol, I used the `ssh` program to connect to Riddler using its domain name
 7. I am asked for my password, which is the password for my account on Riddler
 8. Since the SSH protocol is based on cryptography, anyone monitoring my network traffic will see an encrypted version of the traffic, including the password
 9. Having logged in, the commands I enter are being performed on Riddler even though I am sitting at my home desktop
-
 
 ## Transfering files
 
