@@ -105,6 +105,9 @@ There is actually a lot going on. A simplied explanation:
 
 ## Transfering files
 
+- Task: transfer files between computers
+- Task: download data from the web using the command line
+
 ### Transfer files from client to server
 
     # Make a temp directory to store these
@@ -129,14 +132,12 @@ There is actually a lot going on. A simplied explanation:
     
     # Transfer a directory
     scp -r dir1 ekrell@riddler.tamucc.edu:
-    
 
 ### Download from a web source
 
-Instead of downloading to your local machine for transfering to the remote server, 
-can simply download directly from a web page in a remote session
-
-We will download a file from https://www.bionumerics.com/download/sample-data 
+- Tedious: download from web on local machine, then transfer to remote
+- Better: download from web directly onto remote machine using the `wget` command
+<br>
 
     # SSH into remote machine
     ssh ekrell@riddler.tamucc.edu
