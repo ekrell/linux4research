@@ -1,9 +1,10 @@
 # iCORE Workshop: Linux for Researchers
 
-Many researchers are using Linux for a variety of reasons, either on their workstation or a remote server. 
-Student researchers, graduate and undergrad, often find themselves suddenly working in Linux without any training. 
-The purpose of this tutorial is to address some common questions and concerns and provide suggestions on best (or at least better) practices. 
-This is followed by a brief introduction to scripting, using examples based on common research tasks. 
+- Students researchers often find themselves using Linux systems, local workstations or remote servers, with minimal training
+- This tutorial addresses some of their common questions and concerns
+- But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources
+
+
 
 This tutorial is not about command line basics. There are an incredible amount of tutorials and books on using commands likes `head`, `ls`, `cat`, etc. I see no need for additional redundancy. Even after learning how to work with the commands, many basic tasks are still unclear to many new Linux users. For example, many think that they must have admin priviledges to install any software or will share files with other users by opening up all permissions despite security risks. Another classic: setting an alarm to go off every 15 minutes so they can interact with a remote session to avoid getting logged out and their process killed. These are among the issues addressed here.
 
