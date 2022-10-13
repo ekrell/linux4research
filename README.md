@@ -322,10 +322,19 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     # Compile from source
     cd tree-1.8.0
     make
-    cp tree $HOME/local/bin
+    cp tree $HOME/local/bin/
     
     # Run it
     tree
+    
+**Install [htop](https://htop.dev/)**
+
+    wget https://github.com/htop-dev/htop/releases/download/3.2.1/htop-3.2.1.tar.xz
+    tar xvzf htop-3.2.1.tar.xz
+    cd htop-3.2.
+    ./configure 
+    make 
+    cp htop $HOME/local/bin/
     
 ### Can you always do this?
 
@@ -342,6 +351,56 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - Since does not touch system files, runs without root
 - As always, a software may have some dependencies (including kernel modules)
 
+## Manage processes
+
+- **Program:** sequence of instructions (passive)
+- **Process:** program in execution (active); Or, an instance of a program
+- Programs -> processes is a 1:M (one-to-many) relationship
+- Processes are maintained within the Kernel's process table
+- **Thread:** processes are composed of at least one thread of execution -- First thread in process is called task group leader -- Other threads in process are linked through a list of nodes
+- **Task:** an executable entity; a general term for process or thread
+
+### Process monitoring
+
+- [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system
+- [`top`](https://man7.org/linux/man-pages/man1/top.1.html): display Linux processes
+- [`htop`](https://www.man7.org/linux/man-pages/man1/htop.1.html): like `top`, but interactive and feature-rich
+<br>
+
+    # list all processes
+    ps -aux
+    ps -aux | less
+    ps -aux | grep <USERNAME>
+    
+    # Display running processes
+    top
+    
+    # Interactive display
+    htop
+
+### Stop a running process
+
+- Stop processes with the `kill` command
+- Actually, `kill` can be used to send arbitrary signals to processes
+- The kill signal (`SIGKILL`) is one of them, but among many
+- [Tutorial](https://www.cyberciti.biz/faq/unix-kill-command-examples/)
+- [Difference between SIGTERM and SIGKILL](https://linuxhandbook.com/sigterm-vs-sigkill/)
+<br>
+
+    # Make a process to kill
+    python -c $'import time\nwhile True: time.sleep(1)' &
+    ps -aux | grep <USERNAME>
+  
+    # Kill the process based on PID
+    kill <PID you found using ps above>
+    ps -aux | grep <USERNAME>
+    
+    # List all signals
+    kill -l
+    
+    # Sometimes stubborn processes need `SIGKILL` instead of the default `SIGTERM`
+    kill -<signal> <pid>
+
 ## Managing remote sessions
 
 - A common task is to run long processes on a remote server. 
@@ -354,41 +413,8 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
   - Send jobs to the background and then back to the foreground
   - Create and manage remote sessions that are not tied to your terminal sessions using `screen` and `tmux`
 
-#### Manage processes
+### Using background and foreground processes
 
-**Concepts**
-
-- Program: sequence of instructions (passive)
-- Process: program in execution (active); Or, an instance of a program
-- Programs -> processes is a 1:M (one-to-many) relationship
-- Processes are maintained within the Kernel's process table
-- Thread: processes are composed of at least one thread of execution -- First thread in process is called task group leader -- Other threads in process are linked through a list of nodes
-- Task: an executable entity; a general term for process or thread
-
-**Process monitoring**
-
-- [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system
-- [`pgrep`](https://man7.org/linux/man-pages/man1/pgrep.1.html): search for processes by name 
-- [`top`](https://man7.org/linux/man-pages/man1/top.1.html): display Linux processes
-- [`htop`](https://www.man7.org/linux/man-pages/man1/htop.1.html): like `top`, but interactive and feature-rich
-
-
-    ps -aux
-    
-    pgrep
-    
-    top
-    
-    htop
-
-Stop a running process
-
-    kill <pid>
-    
-    kill -<signal> <pid>
-    
-    pkill 
-   
    
 Send process to background with `&` and `!`  
 
@@ -423,8 +449,9 @@ The previous approach allows you to shuttle processes back and forth between bac
 
 **Install `tmux`**
 
-- Official instructions: https://github.com/tmux/tmux/wiki/Installing 
-- Another good resource: https://jdhao.github.io/2018/10/16/tmux_build_without_root_priviledge/ 
+- [Official instructions](https://github.com/tmux/tmux/wiki/Installing)
+- [Another good resource](https://jdhao.github.io/2018/10/16/tmux_build_without_root_priviledge/)
+<br>    
     
     # Install libevent
     wget https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz
