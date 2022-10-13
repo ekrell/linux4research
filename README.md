@@ -48,7 +48,6 @@ For example, the following means to create a file called `puppy.txt` and write `
 - youtube: https://www.youtube.com/channel/UCvsK07PvushTI2BA2BhN-DQ
 - google calendar: https://calendar.google.com/calendar/u/0?cid=Y2JlNDZodnIwZXV0NmZzN2h1bWs2NnB2dnNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
 
-
 # Part 1: Without admin priviledges
 
 - Those working on remote servers like the HPC are very unliekly to have administrator priviledges: _root_ in Linux parlance.
@@ -332,13 +331,13 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 ![Linux kernel diagram](img/kernel.png) [5]
 
-- Some software require installing [kernel modules]()
+- Some software require installing [kernel modules](https://linux-kernel-labs.github.io/refs/heads/master/labs/kernel_modules.html)
 - These modify the operating system itself, which effects everyone: elevated priviledges required
 - Also, some software just really tedious to install manually and the steps may be poorly documents
 
 ### Alternative: install an `AppImage`
 
-- Similar to the `.exe` files in Windows
+- [`AppImage`](https://appimage.org/): similar to the `.exe` files in Windows
 - Concept: one software = one file
 - Since does not touch system files, runs without root
 - As always, a software may have some dependencies (including kernel modules)
