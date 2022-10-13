@@ -449,7 +449,7 @@ The previous approach allows you to shuttle processes back and forth between bac
 - A somewhat tedious process is required for each process
 - Process must be disowned at the time of exiting this system. What if you time or forget and close your laptop, etc?
 
-### Install `tmux`**
+### Install `tmux`
 
 - [Official instructions](https://github.com/tmux/tmux/wiki/Installing)
 - [Another good resource](https://jdhao.github.io/2018/10/16/tmux_build_without_root_priviledge/)
