@@ -4,13 +4,19 @@
 - This tutorial addresses some of their common questions and concerns
 - But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources
 
+## Some of what is covered 
 
+- If I am inactive for a few minutes, my remote session is closed automatically and whatever I was running is killed
+- Do I have to be an admin just to install software for myself?
+- I need to share a file with another user, so I'll just make it readable and writable for all users
 
-This tutorial is not about command line basics. There are an incredible amount of tutorials and books on using commands likes `head`, `ls`, `cat`, etc. I see no need for additional redundancy. Even after learning how to work with the commands, many basic tasks are still unclear to many new Linux users. For example, many think that they must have admin priviledges to install any software or will share files with other users by opening up all permissions despite security risks. Another classic: setting an alarm to go off every 15 minutes so they can interact with a remote session to avoid getting logged out and their process killed. These are among the issues addressed here.
+## Recommended (free) resources
 
-See also: [Evan Krell's tutorial for using High Performance Computing resources for processing DNA data for bioinformatics, etc.](https://github.com/ekrell/hpc-dna-tutorial) It is from 2016, but I expect will still be applicable for the most part. 
+- [The Linux Command Line](http://linuxcommand.org/tlcl.php). In-depth Linux book: command line and scripting
+- [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common research tasks is to speed up long processes by dividing into indepedent units that run simultaneously.
+- [Evan Krell's tutorial for using High Performance Computing resources for processing DNA data for bioinformatics, etc.](https://github.com/ekrell/hpc-dna-tutorial) It is from 2016, but I expect will still be applicable for the most part. 
 
-**innovation in COmputing REsearch (iCORE):**
+## The innovation in COmputing REsearch (iCORE) lab
 
 - website: http://icore.tamucc.edu/
 - twitter: https://twitter.com/ICORE_TAMUCC
