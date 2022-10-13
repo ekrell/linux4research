@@ -1,22 +1,24 @@
 # iCORE Workshop: Linux for Researchers
 
+## Introduction
+
 - Students researchers often find themselves using Linux systems, local workstations or remote servers, with minimal training
 - This tutorial addresses some of their common questions and concerns
 - But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources
 
-## Some of what is covered 
+### Some of what is covered 
 
 - If I am inactive for a few minutes, my remote session is closed automatically and whatever I was running is killed
 - Do I have to be an admin just to install software for myself?
 - I need to share a file with another user, so I'll just make it readable and writable for all users
 
-## Recommended (free) resources
+### Recommended (free) resources
 
 - [The Linux Command Line](http://linuxcommand.org/tlcl.php). In-depth Linux book: command line and scripting
 - [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common to speed up long processes by dividing into indepedent units that run simultaneously.
 - [Evan Krell's tutorial DNA data processing using High Performance Computing](https://github.com/ekrell/hpc-dna-tutorial). For bio students to get started with [TAMUCC's HPC](https://hpcweb.tamucc.edu/). 
 
-## Formatting notes
+### Formatting notes
 
 Commands to type in a terminal are formated as a code block:
 
@@ -39,8 +41,7 @@ For example, the following means to create a file called `puppy.txt` and write `
     nano puppy.txt
             beagle
 
-
-## The innovation in COmputing REsearch (iCORE) lab
+### The innovation in COmputing REsearch (iCORE) lab
 
 - website: http://icore.tamucc.edu/
 - twitter: https://twitter.com/ICORE_TAMUCC
@@ -139,7 +140,9 @@ There is actually a lot going on. A simplied explanation:
 
 - Tedious: download from web on local machine, then transfer to remote
 - Better: download from web directly onto remote machine using the `wget` command
+- [`wget` tutorial](https://www.hostinger.com/tutorials/wget-command-examples/)
 <br>
+
 
     # SSH into remote machine
     ssh ekrell@riddler.tamucc.edu
@@ -186,7 +189,6 @@ We can download the entire FogNet `datashare` server, and skip directories we do
     # Exit remote server
     exit
 
-
 ### Transfer files from server to client    
 
     # Transfer a single file
@@ -199,11 +201,12 @@ We can download the entire FogNet `datashare` server, and skip directories we do
     mkdir WGS
     scp -r ekrell@riddler.tamucc.edu:playground WGS
     
-
 ## File compression 
-    
-A very common source of slowdown is working with large uncompressed files. 
-Compressing lets you transfer data faster and take up less storage on the machine. 
+
+![File compression](img/data-compression.png) [3]
+   
+- A very common source of slowdown is working with large uncompressed files. 
+- Compressing lets you transfer data faster and takes up less storage on the machine. 
 
 ### Compress a single file
 
@@ -221,7 +224,6 @@ Compressing lets you transfer data faster and take up less storage on the machin
     # Uncompress with gunzip
     gunzip GENBANK_large.fasta.gz
     ls
-    
 
 ### Compress a directory
 
@@ -238,7 +240,7 @@ Compressing lets you transfer data faster and take up less storage on the machin
     # Uncompress and extract -> back to raw directory
     tar -xvzf sequences.tar.gz
    
-# Or use `zip` (good for sharing with Windows users)
+### Or use `zip` (good for sharing with Windows users)
 
     # Zip
     zip -r seqs.zip sequences
@@ -247,7 +249,9 @@ Compressing lets you transfer data faster and take up less storage on the machin
     # Unzip
     unzip seqs.zip      # Safer than tar? 
 
-### Managing SSH keys
+## Managing SSH keys
+
+![SSH key authentication](img/ssh-key-auth.png) [4]
 
 - Whenever we use `ssh` or `scp` to connect to remote host, have to input a password
 - Tedious if frequently transferring files
@@ -255,7 +259,6 @@ Compressing lets you transfer data faster and take up less storage on the machin
 - We can use SSH keys to setup passwordless login
 
 Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/ 
-ssh 
 
 ### Install software without root
 
@@ -639,4 +642,6 @@ Package management tasks
 
 - [1] https://en.wikipedia.org/wiki/Client%E2%80%93server_model
 - [2] https://www.softwaretestinghelp.com/what-is-sftp/ 
+- [3] https://docs.faircom.com/doc/ctserver/data-compression.htm
+- [4] https://www.thesslstore.com/blog/14-ssh-key-management-best-practices-you-need-to-know/
 
