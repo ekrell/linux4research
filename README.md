@@ -353,6 +353,10 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 ## Manage processes
 
+![Process states](img/ProcessState.png) [6]
+
+![Threads](img/threads.png) [7]
+
 - **Program:** sequence of instructions (passive)
 - **Process:** program in execution (active); Or, an instance of a program
 - Programs -> processes is a 1:M (one-to-many) relationship
@@ -399,7 +403,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     kill -l
     
     # Sometimes stubborn processes need `SIGKILL` instead of the default `SIGTERM`
-    kill -<signal> <pid>
+    kill -9 <PID>
 
 ## Managing remote sessions
 
@@ -413,9 +417,8 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
   - Send jobs to the background and then back to the foreground
   - Create and manage remote sessions that are not tied to your terminal sessions using `screen` and `tmux`
 
-### Using background and foreground processes
+## Using background and foreground processes
 
-   
 Send process to background with `&` and `!`  
 
     wget -q "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" &!
@@ -431,7 +434,6 @@ Bring a job back to the foreground
 
     fg 1
     
-    
 But what if I am already running it? Pause the process with `Ctrl-z`, then send to background
 
     wget -q "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" & 
@@ -440,14 +442,14 @@ But what if I am already running it? Pause the process with `Ctrl-z`, then send 
     bg
     disown
 
-#### Using `tmux`
+## Another approach: `tmux`
 
 The previous approach allows you to shuttle processes back and forth between background and foreground, but has drawbacks:
 
 - A somewhat tedious process is required for each process
 - Process must be disowned at the time of exiting this system. What if you time or forget and close your laptop, etc?
 
-**Install `tmux`**
+### Install `tmux`**
 
 - [Official instructions](https://github.com/tmux/tmux/wiki/Installing)
 - [Another good resource](https://jdhao.github.io/2018/10/16/tmux_build_without_root_priviledge/)
@@ -481,7 +483,7 @@ The previous approach allows you to shuttle processes back and forth between bac
     make
     make install
     
-**Configure `tmux`**
+### Configure `tmux`
 
 It is generally recommended to customize `tmux` immediately on install because of the awkward placement of a crucial key combination. 
 
@@ -495,9 +497,9 @@ Rebind `Ctrl-b` to `Ctrl-a`
     set-option -g prefix C-a
     bind-key C-a send-prefix
     
-**Using `tmux`**
+### Using `tmux`
 
-Very good intro: https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/ 
+[Adapted from this very good intro tutorial](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
 
     # Start tmux session
     tmux
@@ -549,10 +551,9 @@ Very good intro: https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
     
     # And completely end the session with 'exit' in every pane
 
-
 # Part 2: Admin priviledges required
 
-### Collaboration within Linux
+## Collaboration within Linux
 
 - Sometimes multiple users need to work together on the same files
 - Sometimes it makes sense to avoid collaborating directly on the same files, instead using version control to maintain independent copies for each user
@@ -562,28 +563,25 @@ Very good intro: https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
 
 Instead, use Linux groups to support collaboration
 
-#### Create directory
-
+    # Create directory
     sudo mkdir -p /projects/my_proj
     
-#### Create group
-
+    # Create group
     sudo addgroup my_proj
     
-#### Add a user to a group (including yourself)
-
+    # Add a user to a group (including yourself)
     sudo adduser <USERNAME> my_proj
     
-#### Assign project directory to group
-
+    # Assign project directory to group
     sudo chown -R <USERNAME>:my_proj /projects/my_proj
     
-#### Set all new files made within to belong to this group
-
+    # Set all new files made within to belong to this group
     chmod g+s /projects/my_proj
 
 
-### Package management
+## Package management
+
+![Linux package management](img/pkg-manager.png) [8]
 
 Software is typically installed and maintained with a package manager. Software is bundled into a package that includes the executable file, manual pages, config files, and whatever else is needed. Since the major distributions have their own package manager (or package system), you have some degree of comfort that the packages will mesh well with the system. In other words, if you are installing software in Ubuntu with `apt-get`, the packages should conform to typical Ubuntu conventions. Typical Linux software exist both as source code available for manual installation and as pre-built binaries in packages in package repositories. 
 
@@ -594,7 +592,7 @@ Two major package systems:
 | Debian style (.deb) | Debian, Ubuntu, Raspbian | | Red Hat style (.rpm) | Red Hat, Fedora, CentOS |
 
 
-**Package System Overview**
+### Package System Overview
 
 - Package files:
     - compressed collection of files that make up the software
@@ -624,7 +622,7 @@ Two major package systems:
 
 Quick note about updates: Debian has `apt-get update` and Red Hat has `dnf check-update`. Neither installs anything. In the case of Debian, it updates the package index file, which apt uses for finding packages, which new versions are available, etc. You need to do this before `apt-get upgrade` so that apt is actually looking at the latest state of the packages. Some idea with Red Hat.
 
-Package management tasks
+### Package management tasks
 
 - Find a package in a repo
     - Debian: `apt-cache search <searchstring>`
@@ -687,4 +685,6 @@ Package management tasks
 - [3] https://docs.faircom.com/doc/ctserver/data-compression.htm
 - [4] https://www.thesslstore.com/blog/14-ssh-key-management-best-practices-you-need-to-know/
 - [5] https://www.researchgate.net/publication/277248477_Modeling_Environment_for_Static_Verification_of_Linux_Kernel_Modules
-
+- [6] https://www.tecmint.com/linux-process-management/
+- [7] https://www.slashroot.in/difference-between-process-and-thread-linux
+- [8] https://devopedia.org/package-manager
