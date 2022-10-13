@@ -209,7 +209,84 @@ Compressing lets you transfer data faster and take up less storage on the machin
     
     # Unzip
     unzip seqs.zip      # Safer than tar? 
-   
+
+### Managing SSH keys
+
+
+
+
+
+
+
+### Install software without root
+
+- Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
+- Software is typically installed on request
+- But can be slow
+- Or, you might have a number of small executables that don't make sense to be made available for all users
+- Why do you need root to install programs? Because users should not modify system-wide files
+- But do they **need** to be system-wide? Depends... 
+
+#### Setup local library and binary folders
+
+    # Create directories for local libraries and programs
+    mkdir -p $HOME/local/bin
+    
+    # Add these to your `$PATH`, so that the system will find them
+    nano ~/.bashrc
+        <at the very bottom of your file>
+        export PATH="$HOME/local/bin:$PATH"
+        export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+        
+    # Reload your bash settings
+    source ~/.bashrc
+
+#### One way to install: write it yourself
+
+- Every time you write a C program and compile it, or even a python/R/shell script, etc....
+- You just added an executable program to the computer, installing it for yourself in a directory you own
+- This doesn't "feel" like installing, but how is it not?
+- Maybe we would feel like it installed if we can access it from anywhere,like the other system commands
+
+        # Make a new executable program
+        nano program.sh
+                echo "This is a script, a type of non-compiled program"
+        
+        # Set executable permission
+        chmod +x program.sh
+        
+        # Run it
+        ./program.sh
+        
+        # Go to prevous directory and try to run it
+        cd ..
+        ./program.sh
+        linux4research/program.sh
+        
+        # Move your script
+        cp linux4research/program.sh $HOME/local/bin/program
+                
+        # Now run it from anywhere
+        program
+        
+        
+#### Install programs from the web to your local programs directory
+
+**Install `tree`**
+
+    # Get the gzipped archive
+    wget http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
+    
+    # Extract contents
+    tar xvzf tree-1.8.0.tgz
+    
+    # Compile from source
+    cd tree-1.8.0
+    make
+    cp tree $HOME/local/bin
+    
+    # Run it
+    tree
 
 ### Managing remote sessions
 
@@ -237,9 +314,9 @@ Compressing lets you transfer data faster and take up less storage on the machin
 **Process monitoring**
 
 - [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system
-- [`pgrep`](): 
-- [`top`]():
-- [`htop`](): 
+- [`pgrep`](https://man7.org/linux/man-pages/man1/pgrep.1.html): search for processes by name 
+- [`top`](https://man7.org/linux/man-pages/man1/top.1.html): display Linux processes
+- [`htop`](https://www.man7.org/linux/man-pages/man1/htop.1.html): like `top`, but interactive and feature-rich
 
 
     ps -aux
@@ -282,80 +359,148 @@ But what if I am already running it? Pause the process with `Ctrl-z`, then send 
     
     bg
     disown
-    
-#### Using `screen` 
+
+#### Using `tmux`
 
 The previous approach allows you to shuttle processes back and forth between background and foreground, but has drawbacks:
 
 - A somewhat tedious process is required for each process
 - Process must be disowned at the time of exiting this system. What if you time or forget and close your laptop, etc?
 
-An alternative is using `screen` or `tmux` to create sessions that you interact with, but that are independent of your terminal's remote session.
-I prefer `tmux`, but `screen` is often already installed on Linux systems. 
-
-
-#### Using `tmux` 
-
-### Install software without root
-
-- Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
-- Software is typically installed on request
-- But can be slow
-- Or, you might have a number of small executables that don't make sense to be made available for all users
-- Why do you need root to install programs? Because users should not modify system-wide files
-- But do they **need** to be system-wide? Depends... 
-
-#### One way to install: write it yourself
-
-- Every time you write a C program and compile it, or even a python/R/shell script, etc....
-- You just added an executable program to the computer, installing it for yourself in a directory you own
-- This doesn't "feel" like installing, but how is it not?
-- Maybe we would feel like it installed if we can access it from anywhere,like the other system commands
-
-        # Make a new executable program
-        nano program.sh
-                echo "This is a script, a type of non-compiled program"
-        
-        # Set executable permission
-        chmod +x program.sh
-        
-        # Run it
-        ./program.sh
-        
-        # Go to prevous directory and try to run it
-        cd ..
-        ./program.sh
-        linux4research/program.sh
-        
-        # Create local executables directory
-        cd ~
-        mkdir bin
-        
-        # Move your script
-        cp linux4research/program.sh bin/program
-        
-        # Modify your `$PATH` variable so that your environment will check that directory for programs
-        nano ~/.bashrc 
-            export PATH=$PATH:bin  # Add this line to the end
-        bash  # Update environment
-        
-        # Now run it from anywhere
-        program
-        
-#### Install programs from the web to your local programs directory
-
-**Install `tree`**
-
-
 **Install `tmux`**
 
+- Official instructions: https://github.com/tmux/tmux/wiki/Installing 
+- Another good resource: https://jdhao.github.io/2018/10/16/tmux_build_without_root_priviledge/ 
+    
+    # Install libevent
+    wget https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz
+    tar -zxf libevent-2.1.12-stable.tar.gz
+    cd libevent-2.1.12-stable
+    ./configure --prefix=$HOME/local --enable-shared
+    make
+    make install
+    cd ..
+    
+    # Install ncurses
+    wget https://invisible-island.net/datafiles/release/ncurses.tar.gz
+    tar -xvf ncurses.tar.gz
+    cd ncurses-6.3/
+    ./configure --prefix=$HOME/local --with-shared --with-termlib --enable-pc-files --with-pkg-config-libdir=$HOME/local/lib/pkgconfig
+    make
+    make install
+    cd ..
+    
+    # Install tmux
+    wget https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
+    tar zxvf tmux-3.1b.tar.gz
+    cd tmux-3.1b
+    ./configure --prefix=$HOME/local \
+        CPPFLAGS="-I$HOME/local/include -I$HOME/local/include/ncurses" \
+        LDFLAGS="-L$HOME/local/lib"
+    make
+    make install
+    
+**Configure `tmux`**
 
-### Managing SSH keys
+It is generally recommended to customize `tmux` immediately on install because of the awkward placement of a crucial key combination. 
+
+Create a local `tmux` config file
+
+    nano ~/.tmux.conf
+    
+Rebind `Ctrl-b` to `Ctrl-a`
+
+    unbind C-b
+    set-option -g prefix C-a
+    bind-key C-a send-prefix
+    
+**Using `tmux`**
+
+Very good intro: https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/ 
+
+    # Start tmux session
+    tmux
+    
+    # Split into panes
+    Ctrl-a "
+    Ctrl-a %
+    
+    # Navigate around the panes
+    Ctrl-a <arrow key>
+    
+    # Close pane
+    exit
+    
+    # Run some code
+    [pane 1] top
+    [pane 2] nano
+    
+    # Detach session
+    Ctrl-a d
+    
+    # Check sessions
+    tmux ls
+    
+    # Attach to session
+    tmux attach -t 0
+    
+    # Rename session
+    Ctrl-a $
+        my-session
+        
+    # Detach again
+    Ctrl-a d
+    
+    # Check sessions
+    tmux ls
+    
+    # Logout from remote server
+    exit
+    
+    # Log back in
+    ssh ekrell@riddler.tamucc.edu
+    
+    # Check sessions
+    tmux ls
+    
+    # Attach to session
+    tmux attach -t my-session
+    
+    # And completely end the session with 'exit' in every pane
 
 
 # Part 2: Admin priviledges required
 
 ### Collaboration within Linux
+
+- Sometimes multiple users need to work together on the same files
+- Sometimes it makes sense to avoid collaborating directly on the same files, instead using version control to maintain independent copies for each user
+- But there are use cases where shared directories make a lot of sense
+- The hack is to simply change a directory or file to have "read, write, execute" for all users
+- But this is insecure and can make system services not work when they expect standard permissions for a file
+
+Instead, use Linux groups to support collaboration
+
+#### Create directory
+
+    sudo mkdir -p /projects/my_proj
+    
+#### Create group
+
+    sudo addgroup my_proj
+    
+#### Add a user to a group (including yourself)
+
+    sudo adduser <USERNAME> my_proj
+    
+#### Assign project directory to group
+
+    sudo chown -R <USERNAME>:my_proj /projects/my_proj
+    
+#### Set all new files made within to belong to this group
+
+    chmod g+s /projects/my_proj
+
 
 ### Package management
 
@@ -450,9 +595,3 @@ Package management tasks
 - View the installation history
     - Debian: `tail -n 25 /var/log/apt/history.log` <- for checking the last 25 entries. Could use less, nano, etc.
     - Red hat: `dnf history`
-
-### Setting up a remote Jupyterlab server
-
-
-
-
