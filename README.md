@@ -143,7 +143,6 @@ There is actually a lot going on. A simplied explanation:
 - [`wget` tutorial](https://www.hostinger.com/tutorials/wget-command-examples/)
 <br>
 
-
     # SSH into remote machine
     ssh ekrell@riddler.tamucc.edu
 
@@ -184,7 +183,6 @@ We can download the entire FogNet `datashare` server, and skip directories we do
     # Recursively download a site
     wget -r --reject-regex=".*datasets.*" https://gridftp.tamucc.edu/fognet/datashare/
     ls gridftp.tamucc.edu/fognet/datashare       # Notice that you get all but 'datasets' directory
-
 
     # Exit remote server
     exit
@@ -260,7 +258,7 @@ We can download the entire FogNet `datashare` server, and skip directories we do
 
 Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/ 
 
-### Install software without root
+## Install software without root
 
 - Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
 - Software is typically installed on request
@@ -269,7 +267,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - Why do you need root to install programs? Because users should not modify system-wide files
 - But do they **need** to be system-wide? Depends... 
 
-#### Setup local library and binary folders
+### Setup local library and binary folders
 
     # Create directories for local libraries and programs
     mkdir -p $HOME/local/bin
@@ -283,7 +281,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     # Reload your bash settings
     source ~/.bashrc
 
-#### One way to install: write it yourself
+### One way to install: write it yourself
 
 - Every time you write a C program and compile it, or even a python/R/shell script, etc....
 - You just added an executable program to the computer, installing it for yourself in a directory you own
@@ -312,9 +310,9 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
         program
         
         
-#### Install programs from the web to your local programs directory
+### Install programs from the web to your local programs directory
 
-**Install `tree`**
+**Install [`tree`](https://linux.die.net/man/1/tree)**
 
     # Get the gzipped archive
     wget http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
@@ -329,8 +327,23 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     
     # Run it
     tree
+    
+### Can you always do this?
 
-### Managing remote sessions
+![Linux kernel diagram](img/kernel.png) [5]
+
+- Some software require installing [kernel modules]()
+- These modify the operating system itself, which effects everyone: elevated priviledges required
+- Also, some software just really tedious to install manually and the steps may be poorly documents
+
+### Alternative: install an `AppImage`
+
+- Similar to the `.exe` files in Windows
+- Concept: one software = one file
+- Since does not touch system files, runs without root
+- As always, a software may have some dependencies (including kernel modules)
+
+## Managing remote sessions
 
 - A common task is to run long processes on a remote server. 
 - If you simply run a command from a remote terminal session, that process is tied to that session. 
@@ -644,4 +657,5 @@ Package management tasks
 - [2] https://www.softwaretestinghelp.com/what-is-sftp/ 
 - [3] https://docs.faircom.com/doc/ctserver/data-compression.htm
 - [4] https://www.thesslstore.com/blog/14-ssh-key-management-best-practices-you-need-to-know/
+- [5] https://www.researchgate.net/publication/277248477_Modeling_Environment_for_Static_Verification_of_Linux_Kernel_Modules
 
