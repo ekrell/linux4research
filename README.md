@@ -212,11 +212,13 @@ Compressing lets you transfer data faster and take up less storage on the machin
 
 ### Managing SSH keys
 
+- Whenever we use `ssh` or `scp` to connect to remote host, have to input a password
+- Tedious if frequently transferring files
+- What if we wanted to schedule a transfer or otherwise automate the interaction?
+- We can use SSH keys to setup passwordless login
 
-
-
-
-
+Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/ 
+ssh 
 
 ### Install software without root
 
