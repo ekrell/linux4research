@@ -446,8 +446,8 @@ But what if I am already running it? Pause the process with `Ctrl-z`, then send 
 
 The previous approach allows you to shuttle processes back and forth between background and foreground, but has drawbacks:
 
-- A somewhat tedious process is required for each process
-- Process must be disowned at the time of exiting this system. What if you time or forget and close your laptop, etc?
+- somewhat tedious steps are required for each process: error-prone.
+- Process must be disowned before exiting this system. What if you time out or forget and close your laptop, etc?
 
 ### Install `tmux`
 
