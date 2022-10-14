@@ -342,7 +342,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 - Some software require installing [kernel modules](https://linux-kernel-labs.github.io/refs/heads/master/labs/kernel_modules.html)
 - These modify the operating system itself, which effects everyone: elevated priviledges required
-- Also, some software just really tedious to install manually and the steps may be poorly documents
+- Also, some software are just really tedious to install manually and the steps may be poorly documented
 
 ### Alternative: install an `AppImage`
 
