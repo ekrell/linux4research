@@ -285,6 +285,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - You just added an executable program to the computer, installing it for yourself in a directory you own
 - This doesn't "feel" like installing, but how is it not?
 - Maybe we would feel like it installed if we can access it from anywhere,like the other system commands
+<br>
 
         # Make a new executable program
         nano program.sh
