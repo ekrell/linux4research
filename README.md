@@ -330,7 +330,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
     wget https://github.com/htop-dev/htop/releases/download/3.2.1/htop-3.2.1.tar.xz
     tar xvf htop-3.2.1.tar.xz
-    cd htop-3.2.
+    cd htop-3.2.1/
     ./configure 
     make 
     cp htop $HOME/local/bin/
