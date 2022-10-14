@@ -349,7 +349,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - [`AppImage`](https://appimage.org/): similar to the `.exe` files in Windows
 - Concept: one software = one file
 - Since does not touch system files, runs without root
-- As always, a software may have some dependencies (including kernel modules)
+- As always, software may have some dependencies (including kernel modules)
 
 ## Manage processes
 
