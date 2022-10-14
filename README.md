@@ -2,19 +2,20 @@
 
 ## Introduction
 
-- Students researchers often required to use Linux systems, local workstations or remote servers, with minimal training
-- This tutorial addresses some of their common questions and concerns
-- But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources available
+- Students researchers often required to use Linux systems, local workstations or remote servers, with minimal training.
+- This tutorial addresses some of their common questions and concerns.
+- But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources available.
 
 ### A few motivating examples
 
-- If I am inactive for a few minutes, my remote session is closed automatically and whatever I was running is killed
+- If I am inactive for a few minutes, my remote session is closed automatically and whatever I was running is killed.
 - Do I have to be an admin just to install software for myself?
-- I need to share a file with another user, so I'll just make it readable and writable for all users
+- I need to share a file with another user, so I'll just make it readable and writable for all users.
 
 ### Recommended (free) resources
 
 - [The Linux Command Line](http://linuxcommand.org/tlcl.php). In-depth Linux book that features both command line and scripting.
+- [RegexOne](https://regexone.com/). A guide to learning regular expressions, a powerful and expressive way to specify search patterns
 - [VirtualBox manual](https://www.virtualbox.org/manual/ch01.html). A virtual machine is a perfect place to try Linux without fear of breaking anything important. 
 - [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common to speed up long processes by dividing into indepedent units that run simultaneously.
 - [Evan Krell's tutorial DNA data processing using High Performance Computing](https://github.com/ekrell/hpc-dna-tutorial). For bio students to get started with [TAMUCC's HPC](https://hpcweb.tamucc.edu/). 
@@ -159,14 +160,14 @@ There is actually a lot going on. A simplied explanation:
     unzip AB\ sequencer\ trace\ files.zip
     head AFLP_sample_A01_001_2004-11-22.fsa
 
-Can download multiple files on a webpage. This is done by recursively downloading the pages on a site
+Can download multiple files on a webpage. This is done by recursively downloading the pages on a site.
 
-- `-r`: tells `wget` to recursively download pages
-- `-l <number>`: tells `wget` how many levels to recursively go down
+- `-r`: tells `wget` to recursively download.
+- `-l <number>`: tells `wget` how many levels to recursively go down.
 
 There are a large number of files on that page. Perhaps we only want the "WGS" files. 
 
-- `-A <match string>`: Download only matching files, with the wildcard extension allowed
+- `-A <match string>`: Download only matching files, with the wildcard extension allowed.
 <br>
 
     # Download multiple files on the page
@@ -174,9 +175,7 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
     ls www.bionumerics.com/sites/default/files/download/database/
 
 
-By increasingly the recursion limit, can download all pages, and pages in those pages, etc. 
-We can download the entire FogNet `datashare` server, and skip directories we don't want
-
+- We can download the entire [FogNet `datashare` server](https://gridftp.tamucc.edu/fognet/datashare/), and skip directories we don't want.
 - `--reject-regex="<regular expression>"`: Skip directories/files that match the regular expression
 <br>
 
