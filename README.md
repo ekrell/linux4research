@@ -30,7 +30,7 @@ Any lines in the code block that start with a `#` are comments. No need to run t
     # Use ls to list files in the current directory
     ls
 
-Some commands have place-holders that need to be changes. Placeholders are indicated with `< >`. In the following, you would replace `<USERNAME>` with your actual username. 
+Some commands have place-holders that need to be specified. Placeholders are indicated with `< >`. In the following, you would replace `<USERNAME>` with your actual username. 
 
     ssh <USERNAME>@riddler.tamucc.edu
     
