@@ -227,23 +227,19 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
 
 ### Compress a directory
 
-    # Place files in a directory
-    mkdir sequences
-    mv *.fasta sequences
-    ls sequences
-    du -h sequences
+    cd ..
     
     # Convert directory to archive & gzip
-    tar -cvzf sequences.tar.gz sequences
-    du -h sequences.tar.gz
+    tar -cvzf fasta.tar.gz fasta
+    du -h fasta.tar.gz
     
     # Uncompress and extract -> back to raw directory
-    tar -xvzf sequences.tar.gz
+    tar -xvzf fasta.tar.gz
    
 ### Or use `zip` (good for sharing with Windows users)
 
     # Zip
-    zip -r seqs.zip sequences
+    zip -r seqs.zip fasta
     du -h seqs.zip
     
     # Unzip
@@ -290,27 +286,27 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - Maybe we would feel like it installed if we can access it from anywhere, like the other system commands.
 <br>
 
-        # Make a new executable program
-        nano program.sh
-                echo "This is a script, a type of non-compiled program"
-        
-        # Set executable permission
-        chmod +x program.sh
-        
-        # Run it
-        ./program.sh
-        
-        # Go to another and try to run it
-        cd /etc
-        ./program.sh
-        cd -
-        
-        # Move your script
-        cp program.sh $HOME/local/bin/program
-                
-        # Now run it from anywhere
-        program
-        
+    # Make a new executable program
+    nano program.sh
+            echo "This is a script, a type of non-compiled program"
+
+    # Set executable permission
+    chmod +x program.sh
+
+    # Run it
+    ./program.sh
+
+    # Go to another and try to run it
+    cd /etc
+    ./program.sh
+    cd -
+
+    # Move your script
+    cp program.sh $HOME/local/bin/program
+
+    # Now run it from anywhere
+    program
+
         
 ### Install programs from the web to your local programs directory
 
