@@ -281,10 +281,10 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 ### One way to install: write it yourself
 
-- Every time you write a C program and compile it, or even a python/R/shell script, etc....
-- You just added an executable program to the computer, installing it for yourself in a directory you own
+- Every time you write a C program and compile it, or even a python/R/shell script, etc...
+- You just added an executable program to the computer, installing it for yourself in a directory you own.
 - This doesn't "feel" like installing, but how is it not?
-- Maybe we would feel like it installed if we can access it from anywhere,like the other system commands
+- Maybe we would feel like it installed if we can access it from anywhere, like the other system commands.
 <br>
 
         # Make a new executable program
