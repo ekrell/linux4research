@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- Students researchers often find themselves using Linux systems, local workstations or remote servers, with minimal training
+- Students researchers often required to use Linux systems, local workstations or remote servers, with minimal training
 - This tutorial addresses some of their common questions and concerns
 - But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources
 
