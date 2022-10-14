@@ -104,7 +104,7 @@ There is actually a lot going on. A simplied explanation:
 8. Since the SSH protocol is based on cryptography, anyone monitoring my network traffic will see an encrypted version of the traffic, including the password.
 9. Having logged in, the commands I enter are being performed on Riddler even though I am sitting at my home desktop.
 
-## Transfering files
+## Transferring files
 
 ![SSH transfer](img/SSH-session.png) [2]
 
