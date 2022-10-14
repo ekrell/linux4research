@@ -555,11 +555,11 @@ Rebind `Ctrl-b` to `Ctrl-a`
 
 ## Collaboration within Linux
 
-- Sometimes multiple users need to work together on the same files
-- Sometimes it makes sense to avoid collaborating directly on the same files, instead using version control to maintain independent copies for each user
-- But there are use cases where shared directories make a lot of sense
-- The hack is to simply change a directory or file to have "read, write, execute" for all users
-- But this is insecure and can make system services not work when they expect standard permissions for a file
+- Sometimes multiple users need to work together on the same files.
+- Might sense to avoid working directly on the same files, instead using version control to maintain independent copies.
+- But there are use cases where shared directories make a lot of sense.
+- The hack is to simply change a directory or file to have "read, write, execute" for all users.
+- But this is insecure and can make system services not work when they expect standard permissions for a file.
 
 Instead, use Linux groups to support collaboration
 
