@@ -272,9 +272,9 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     
     # Add these to your `$PATH`, so that the system will find them
     nano ~/.bashrc
-        <at the very bottom of your file>
-        export PATH="$HOME/local/bin:$PATH"
-        export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+            # Add the following lines to the bottom of this file
+            export PATH="$HOME/local/bin:$PATH"
+            export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
         
     # Reload your bash settings
     source ~/.bashrc
