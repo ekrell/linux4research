@@ -297,13 +297,13 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
         # Run it
         ./program.sh
         
-        # Go to prevous directory and try to run it
-        cd ..
+        # Go to another and try to run it
+        cd /etc
         ./program.sh
-        linux4research/program.sh
+        cd -
         
         # Move your script
-        cp linux4research/program.sh $HOME/local/bin/program
+        cp program.sh $HOME/local/bin/program
                 
         # Now run it from anywhere
         program
