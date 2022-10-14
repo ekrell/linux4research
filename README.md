@@ -450,15 +450,12 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 It is generally recommended to customize `tmux` immediately on install because of the awkward placement of a crucial key combination. 
 
-Create a local `tmux` config file
+Create a local `tmux` config file and rebind `Ctrl-b` to `Ctrl-a`
 
     nano ~/.tmux.conf
-    
-Rebind `Ctrl-b` to `Ctrl-a`
-
-    unbind C-b
-    set-option -g prefix C-a
-    bind-key C-a send-prefix
+            unbind C-b
+            set-option -g prefix C-a
+            bind-key C-a send-prefix
     
 ### Using `tmux`
 
