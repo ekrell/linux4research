@@ -262,7 +262,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
 - Software is typically installed on request, which may be too slow.
 - Or, you might have a number of small executables that don't make sense to be made available for all users.
-- Why do you need root to install programs? Because users should not modify system-wide files.
+- Why do you need root to install programs? Because users without eleveated priviledges should not modify system-wide files.
 - But do they **need** to be system-wide? Depends... 
 
 ### Setup local library and binary folders
