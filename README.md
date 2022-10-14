@@ -250,20 +250,19 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
 
 ![SSH key authentication](img/ssh-key-auth.png) [4]
 
-- Whenever we use `ssh` or `scp` to connect to remote host, have to input a password
-- Tedious if frequently transferring files
+- Whenever we use `ssh` or `scp` to connect to remote host, we are asked to asked to a password.
+- Tedious if frequently transferring files.
 - What if we wanted to schedule a transfer or otherwise automate the interaction?
-- We can use SSH keys to setup passwordless login
+- We can use SSH keys to setup passwordless login.
 
 Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/ 
 
 ## Install software without root
 
 - Researchers are likely to work at least partially on Linux servers without admin (or _root_) priviledges. 
-- Software is typically installed on request
-- But can be slow
-- Or, you might have a number of small executables that don't make sense to be made available for all users
-- Why do you need root to install programs? Because users should not modify system-wide files
+- Software is typically installed on request, which may be too slow.
+- Or, you might have a number of small executables that don't make sense to be made available for all users.
+- Why do you need root to install programs? Because users should not modify system-wide files.
 - But do they **need** to be system-wide? Depends... 
 
 ### Setup local library and binary folders
