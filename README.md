@@ -161,8 +161,8 @@ There is actually a lot going on. A simplied explanation:
 
 Can download multiple files on a webpage. This is done by recursively downloading the pages on a site
 
-- `-r`: tells wget to recursively download pages
-- `-l <number>`: tells wget how many levels to recursively go down
+- `-r`: tells `wget` to recursively download pages
+- `-l <number>`: tells `wget` how many levels to recursively go down
 
 There are a large number of files on that page. Perhaps we only want the "WGS" files. 
 
