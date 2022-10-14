@@ -153,6 +153,8 @@ There is actually a lot going on. A simplied explanation:
     # Download a single file
     wget https://raw.githubusercontent.com/ekrell/hpc-dna-tutorial/master/sample_data/GENBANK_large.fasta
     wget https://raw.githubusercontent.com/ekrell/hpc-dna-tutorial/master/sample_data/BOLD_sample.fasta
+    mkdir fasta 
+    mv GENBANK_large.fasta BOLD_sample.fasta fasta
 
     # Download a zip file
     wget https://www.bionumerics.com/sites/default/files/download/AB%20sequencer%20trace%20files.zip
@@ -195,8 +197,7 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
     scp ekrell@riddler.tamucc.edu:playground/www.bionumerics.com/sites/default/files/download/database/WGS_*.bnbk    .
     
     # Transfer a directory
-    mkdir WGS
-    scp -r ekrell@riddler.tamucc.edu:playground WGS
+    scp -r ekrell@riddler.tamucc.edu:playground/fasta .
     
 ## File compression 
 
@@ -206,6 +207,8 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
 - Compressing lets you transfer data faster and takes up less storage on the machine. 
 
 ### Compress a single file
+
+    cd fasta
 
     # Inspect raw file
     file GENBANK_large.fasta
