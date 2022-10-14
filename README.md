@@ -65,7 +65,7 @@ A very common source of confusion for Linux beginners is the client-server relat
 - Very common for researchers to run their code on a more powerful remote server
 - [Secure Shell (SSH)](https://www.ssh.com/academy/ssh/protocol): a network protocol for logging into a remote computer from a local computer
     - [`ssh`](https://www.ssh.com/academy/ssh/command): a software implementation of the SSH protocol. Also called an SSH client. Use it to log into remote computers. Similar to PuTTY on Windows.
-    - [`scp`](https://www.ssh.com/academy/ssh/scp): Copy a file from one machine to another
+    - [`scp`](https://www.ssh.com/academy/ssh/scp): Copy a file from one machine to another.
 
 Consider the following: 
 
