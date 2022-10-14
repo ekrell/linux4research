@@ -6,7 +6,7 @@
 - This tutorial addresses some of their common questions and concerns
 - But this is not a tutorial for command line and scripting basics, since there is no shortage of high quality resources available
 
-### Some of what is covered 
+### A few motivating examples
 
 - If I am inactive for a few minutes, my remote session is closed automatically and whatever I was running is killed
 - Do I have to be an admin just to install software for myself?
