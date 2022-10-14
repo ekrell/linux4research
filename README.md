@@ -52,7 +52,7 @@ For example, the following means to create a file called `puppy.txt` and write `
 # Part 1: Without admin priviledges
 
 - Those working on remote servers like the HPC are very unliekly to have administrator priviledges: _root_ in Linux parlance.
-- So these are things that a typically system would allow a non-elevated user to perform. No need for the `sudo` command.
+- So these are things that a typical system would allow a non-elevated user to perform. No need for the `sudo` command.
 
 ## Clients & Servers
 
