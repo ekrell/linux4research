@@ -180,7 +180,7 @@ There are a large number of files on that page. Perhaps we only want the "WGS" f
 <br>
 
     # Recursively download a site
-    wget -r --reject-regex=".*datasets.*" https://gridftp.tamucc.edu/fognet/datashare/
+    wget -r --reject-regex=".*datasets.*|.*tar.gz" https://gridftp.tamucc.edu/fognet/datashare/
     ls gridftp.tamucc.edu/fognet/datashare       # Notice that you get all but 'datasets' directory
 
     # Exit remote server
