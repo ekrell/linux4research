@@ -327,7 +327,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     # Run it
     tree
     
-**Install [htop](https://htop.dev/)**
+**Install [`htop`](https://htop.dev/)**
 
     wget https://github.com/htop-dev/htop/releases/download/3.2.1/htop-3.2.1.tar.xz
     tar xvzf htop-3.2.1.tar.xz
