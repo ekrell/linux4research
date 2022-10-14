@@ -404,48 +404,13 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
     # Sometimes stubborn processes need `SIGKILL` instead of the default `SIGTERM`
     kill -9 <PID>
 
-## Managing remote sessions
+## Managing remote sessions with `tmux`
 
 - A common task is to run long processes on a remote server. 
 - If you simply run a command from a remote terminal session, that process is tied to that session. 
 - When you log out, the process is killed. 
 - But most systems have a time-out where you will be logged out if inactive for a (typically short) while. 
 - Putting your laptop to sleep, etc will also close the session. 
-- Here, we will:
-  - Briefly familiarize with Linux processes.
-  - Send jobs to the background and then back to the foreground.
-  - Create and manage remote sessions that are not tied to your terminal sessions using `tmux`.
-
-## Using background and foreground processes
-
-Send process to background with `&` and `!`  
-
-    python -c $'import time\nwhile True: time.sleep(1)' &!
-    
-Close terminal, then log back in
-    
-See background jobs
-
-    jobs
-    
-Bring a job back to the foreground
-
-    fg 1
-    
-But what if I am already running it? Pause the process with `Ctrl-z`, then send to background
-
-    wget -q "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" & 
-    ^Z
-    
-    bg
-    disown
-
-## Another approach: `tmux`
-
-The previous approach allows you to shuttle processes back and forth between background and foreground, but has drawbacks:
-
-- somewhat tedious steps are required for each process: error-prone.
-- Process must be disowned before exiting this system. What if you time out or forget and close your laptop, etc?
 
 ### Install `tmux`
 
