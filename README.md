@@ -420,8 +420,7 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 Send process to background with `&` and `!`  
 
-    wget -q "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" &!
-    sh &!
+    python -c $'import time\nwhile True: time.sleep(1)' &!
     
 Close terminal, then log back in
     
