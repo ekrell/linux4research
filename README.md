@@ -413,9 +413,9 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 - But most systems have a time-out where you will be logged out if inactive for a (typically short) while. 
 - Putting your laptop to sleep, etc will also close the session. 
 - Here, we will:
-  - Briefly familiarize with Linux processes
-  - Send jobs to the background and then back to the foreground
-  - Create and manage remote sessions that are not tied to your terminal sessions using `screen` and `tmux`
+  - Briefly familiarize with Linux processes.
+  - Send jobs to the background and then back to the foreground.
+  - Create and manage remote sessions that are not tied to your terminal sessions using `tmux`.
 
 ## Using background and foreground processes
 
