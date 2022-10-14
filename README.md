@@ -95,7 +95,7 @@ Consider the following:
 There is actually a lot going on. A simplied explanation: 
 
 1. I was at my desktop computer in a terminal emulator (command line program in a GUI window manager)
-2. There exists a computer with the IP address `23.221.222.250`
+2. There exists a computer with the IP address `64.71.95.171`
 3. Instead of having to memorize that number, the [Domain Name Service (DNS)](https://aws.amazon.com/route53/what-is-dns/) is used to map human-friendly names to IP addresses
 4. The TAMUCC IT have a tradition of name the CS student's homework server after Batman villains. Currently, it is `riddler.tamucc.edu`. We can call it simply _Riddler_. 
 5. Following the SSH protocol, Riddler is running a program (`sshd`) that accepts incoming remote logins
