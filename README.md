@@ -15,6 +15,7 @@
 ### Recommended (free) resources
 
 - [The Linux Command Line](http://linuxcommand.org/tlcl.php). In-depth Linux book that features both command line and scripting.
+- [VirtualBox manual](https://www.virtualbox.org/manual/ch01.html). A virtual machine is a perfect place to try Linux without fear of breaking anything important. 
 - [GNU Parallel Tutorial](https://www.gnu.org/software/parallel/parallel_tutorial.html). Very common to speed up long processes by dividing into indepedent units that run simultaneously.
 - [Evan Krell's tutorial DNA data processing using High Performance Computing](https://github.com/ekrell/hpc-dna-tutorial). For bio students to get started with [TAMUCC's HPC](https://hpcweb.tamucc.edu/). 
 
