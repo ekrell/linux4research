@@ -357,18 +357,18 @@ Tutorial here: https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
 
 ![Threads](img/threads.png) [7]
 
-- **Program:** sequence of instructions (passive)
-- **Process:** program in execution (active); Or, an instance of a program
-- Programs -> processes is a 1:M (one-to-many) relationship
-- Processes are maintained within the Kernel's process table
-- **Thread:** processes are composed of at least one thread of execution -- First thread in process is called task group leader -- Other threads in process are linked through a list of nodes
-- **Task:** an executable entity; a general term for process or thread
+- **Program:** sequence of instructions (passive).
+- **Process:** program in execution (active); Or, an instance of a program.
+- Programs -> processes is a 1:M (one-to-many) relationship.
+- Processes are maintained within the Kernel's process table.
+- **Thread:** processes are composed of at least one thread of execution -- First thread in process is called task group leader -- Other threads in process are linked through a list of nodes.
+- **Task:** an executable entity; a general term for process or thread.
 
 ### Process monitoring
 
-- [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system
-- [`top`](https://man7.org/linux/man-pages/man1/top.1.html): display Linux processes
-- [`htop`](https://www.man7.org/linux/man-pages/man1/htop.1.html): like `top`, but interactive and feature-rich
+- [`ps`](https://man7.org/linux/man-pages/man1/ps.1.html): shows information about active processes on the system.
+- [`top`](https://man7.org/linux/man-pages/man1/top.1.html): display Linux processes.
+- [`htop`](https://www.man7.org/linux/man-pages/man1/htop.1.html): like `top`, but interactive and feature-rich.
 <br>
 
     # list all processes
